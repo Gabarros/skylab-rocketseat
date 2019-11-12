@@ -1,4 +1,6 @@
 const mongoose = require('mongoose');
+const mongoosePaginate = require('mongoose-paginate');
+
 
 // Criação do Schema
 const ProductSchema = new mongoose.Schema({
@@ -20,6 +22,9 @@ const ProductSchema = new mongoose.Schema({
         default: Date.now
     }
 });
+
+// Adicionando plugin de paginação de registros
+ProductSchema.plugin(mongoosePaginate);
 
 // Registrando o model na aplicação
 mongoose.model('Product', ProductSchema);

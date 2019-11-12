@@ -4,8 +4,9 @@ const Product = mongoose.model('Product');
 module.exports = {
     // Listagem de Produtos
     async index(req, res){
+        const { page = 1 } = req.query;
         // Buscando registros no banco e armazenando
-        const products = await Product.find();
+        const products = await Product.paginate({},{ page, limit: 10});
 
         // Devolvendo listagem dos registros
         return res.json(products);
